@@ -1,0 +1,19 @@
+{
+  "name": "mc-express",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sakkke/mc-express.git"
+  },
+  "author": "sakkke <w32w64@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sakkke/mc-express/issues"
+  },
+  "homepage": "https://github.com/sakkke/mc-express#readme"
+}
