@@ -1,0 +1,4 @@
+{
+  "$schema": "./config.schema.json",
+  "dynmap_port": 8123
+}
