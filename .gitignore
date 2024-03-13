@@ -129,8 +129,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# config.json
-config.json
+# oauth2-discord-proxy.config.json
+oauth2-discord-proxy.config.json
 
 # PEM files
 *.pem
