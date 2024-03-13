@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sakkke/mc-express#readme",
   "dependencies": {
-    "express": "^4.18.3"
+    "express": "^4.18.3",
+    "oauth2-discord-proxy": "github:sakkke/oauth2-discord-proxy"
   }
 }
