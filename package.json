@@ -1,5 +1,5 @@
 {
-  "name": "mc-express",
+  "name": "@sakkke/mc-express",
   "version": "0.1.0",
   "description": "",
   "main": "src/index.js",
