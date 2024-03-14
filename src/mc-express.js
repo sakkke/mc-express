@@ -1,5 +1,6 @@
 const express = require('express')
 const fs = require('fs')
+const handler = require('serve-handler')
 const https = require('https')
 const { createBot, createProxy } = require('oauth2-discord-proxy')
 const { createProxyMiddleware } = require('http-proxy-middleware')
@@ -34,6 +35,14 @@ function createServer(config) {
 
   app.get('/', (req, res) => {
     res.redirect('/maps/')
+  })
+
+  app.get('/Backups/', async (req, res) => {
+    await handler(req, res, {
+      public: '..',
+      unlisted: ['Files'],
+      trailingSlash: true,
+    })
   })
 
   app.use('/maps/', createProxyMiddleware({
