@@ -1,9 +1,10 @@
-const express = require('express')
+const { Hono } = require('hono')
+const { html } = require('hono/html')
+const { serve } = require('@hono/node-server')
 const fs = require('fs')
-const handler = require('serve-handler')
 const https = require('https')
 const { createBot, createProxy } = require('oauth2-discord-proxy')
-const { createProxyMiddleware } = require('http-proxy-middleware')
+const { readFile, readdir } = require('fs/promises')
 
 function createServer(config) {
   const {
@@ -17,14 +18,9 @@ function createServer(config) {
     port,
   } = config
 
-  const app = express()
+  const app = new Hono()
 
-  const server = https.createServer({
-    key: fs.readFileSync('./key.pem'),
-    cert: fs.readFileSync('./cert.pem'),
-  }, app)
-
-  app.use('/', createProxy({
+  app.route('/', createProxy({
     bot: createBot(discord_token),
     client_id,
     client_secret,
@@ -33,29 +29,50 @@ function createServer(config) {
     oauth2_endpoint,
   }))
 
-  app.get('/', (req, res) => {
-    res.redirect('/maps/')
+  app.get('/', c => c.redirect('/maps/'))
+
+  app.get('/Backups/*', async c => {
+    const path = c.req.path
+      .replace(/^\/Backups\//, '')
+
+    if (path === '') {
+      const files = await readdir('../Backups', {
+        withFileTypes: true,
+      })
+      return c.html(html`
+        <!DOCTYPE html>
+        <ul>
+          ${files
+            .filter(file => file.isFile())
+            .map(file => html`
+              <li><a href="${file.name}">${file.name}</a></li>
+            `)}
+        </ul>
+      `)
+    }
+
+    const data = await readFile(`../Backups/${path}`)
+    return c.body(data, 200, { 'Content-Type': 'application/zip' })
   })
 
-  app.get('/Backups/', async (req, res) => {
-    await handler(req, res, {
-      public: '..',
-      unlisted: ['Files'],
-      trailingSlash: true,
-    })
+  app.get('/maps/*', async c => {
+    const path = c.req.path
+      .replace(/^\/maps\//, '')
+    const url = `http://localhost:${dynmap_port}/${path}`
+    return fetch(url)
   })
 
-  app.use('/maps/', createProxyMiddleware({
-    target: `http://localhost:${dynmap_port}`,
-    changeOrigin: true,
-    pathRewrite: {
-      '^/maps/': '',
+  serve({
+    fetch: app.fetch,
+    port,
+    createServer: https.createServer,
+    serverOptions: {
+      key: fs.readFileSync('./key.pem'),
+      cert: fs.readFileSync('./cert.pem'),
     },
-  }))
-
-  server.listen(port, () => {
-    console.log(`listening at https://localhost:${port}`)
-    console.log(`login: https://localhost:${port}/login`)
+  }, info => {
+    console.log(`listening at https://localhost:${info.port}`)
+    console.log(`login: https://localhost:${info.port}/login`)
   })
 }
 
