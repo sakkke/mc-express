@@ -34,7 +34,7 @@ function createServer(config) {
     const path = c.req.path
       .slice(9)
 
-    if (path === '') {
+    if (path.length === 0) {
       const files = await readdir('../Backups', {
         withFileTypes: true,
       })
