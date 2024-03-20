@@ -9,7 +9,7 @@
   "main": "src/index.js",
   "dependencies": {
     "hono": "^4.1.1",
-    "oauth2-discord-proxy": "^0.3.0"
+    "oauth2-discord-proxy": "0.4.0"
   },
   "bugs": {
     "url": "https://github.com/sakkke/mc-express/issues"
