@@ -1,8 +1,8 @@
-const { Hono } = require('hono')
-const { html } = require('hono/html')
-const { serve } = require('bun')
-const { createBot, createProxy } = require('oauth2-discord-proxy')
-const { readFile, readdir } = require('node:fs/promises')
+import { Hono } from 'hono'
+import { html } from 'hono/html'
+import { serve } from 'bun'
+import { createBot, createProxy } from 'oauth2-discord-proxy'
+import { readFile, readdir } from 'node:fs/promises'
 
 function createServer(config) {
   const {
@@ -74,4 +74,4 @@ function createServer(config) {
   console.log(`login: https://0.0.0.0:${port}/login`)
 }
 
-module.exports = { createServer }
+export { createServer }
