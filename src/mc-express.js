@@ -61,6 +61,7 @@ function createServer(config) {
     const path = c.req.path
       .slice(6)
     const url = `http://127.0.0.1:${dynmap_port}/${path}`
+    console.log(`fetching ${url}`)
     return fetch(url)
   })
 
