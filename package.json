@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/sakkke/mc-express#readme",
   "dependencies": {
-    "@hono/node-server": "^1.8.2",
     "hono": "^4.1.1",
     "oauth2-discord-proxy": "^0.3.0"
   },
