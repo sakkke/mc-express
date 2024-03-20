@@ -32,8 +32,9 @@ function createServer(config) {
   app.get('/', c => c.redirect('/maps/'))
 
   app.get('/Backups/*', async c => {
+    // .replace(/^\/Backups\//, '')
     const path = c.req.path
-      .replace(/^\/Backups\//, '')
+      .slice(9)
 
     if (path === '') {
       const files = await readdir('../Backups', {
@@ -56,8 +57,9 @@ function createServer(config) {
   })
 
   app.get('/maps/*', async c => {
+    // .replace(/^\/maps\//, '')
     const path = c.req.path
-      .replace(/^\/maps\//, '')
+      .slice(6)
     const url = `http://localhost:${dynmap_port}/${path}`
     return fetch(url)
   })
