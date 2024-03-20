@@ -73,8 +73,8 @@ function createServer(config) {
       cert: fs.readFileSync('./cert.pem'),
     },
   }, info => {
-    console.log(`listening at https://localhost:${info.port}`)
-    console.log(`login: https://localhost:${info.port}/login`)
+    console.log(`listening at https://0.0.0.0:${info.port}`)
+    console.log(`login: https://0.0.0.0:${info.port}/login`)
   })
 }
 
