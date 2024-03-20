@@ -60,7 +60,7 @@ function createServer(config) {
     // .replace(/^\/maps\//, '')
     const path = c.req.path
       .slice(6)
-    const url = `http://localhost:${dynmap_port}/${path}`
+    const url = `http://127.0.0.1:${dynmap_port}/${path}`
     return fetch(url)
   })
 
