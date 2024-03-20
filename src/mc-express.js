@@ -2,7 +2,7 @@ const { Hono } = require('hono')
 const { html } = require('hono/html')
 const { serve } = require('bun')
 const { createBot, createProxy } = require('oauth2-discord-proxy')
-const { readFile, readdir } = require('fs/promises')
+const { readFile, readdir } = require('node:fs/promises')
 
 function createServer(config) {
   const {
