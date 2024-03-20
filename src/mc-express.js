@@ -1,8 +1,6 @@
 const { Hono } = require('hono')
 const { html } = require('hono/html')
-const { serve } = require('@hono/node-server')
-const fs = require('fs')
-const https = require('https')
+const { serve } = require('bun')
 const { createBot, createProxy } = require('oauth2-discord-proxy')
 const { readFile, readdir } = require('fs/promises')
 
@@ -68,15 +66,12 @@ function createServer(config) {
   serve({
     fetch: app.fetch,
     port,
-    createServer: https.createServer,
-    serverOptions: {
-      key: fs.readFileSync('./key.pem'),
-      cert: fs.readFileSync('./cert.pem'),
-    },
-  }, info => {
-    console.log(`listening at https://0.0.0.0:${info.port}`)
-    console.log(`login: https://0.0.0.0:${info.port}/login`)
+    key: Bun.file('./key.pem'),
+    cert: Bun.file('./cert.pem'),
   })
+
+  console.log(`listening at https://0.0.0.0:${port}`)
+  console.log(`login: https://0.0.0.0:${port}/login`)
 }
 
 module.exports = { createServer }
