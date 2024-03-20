@@ -1,28 +1,25 @@
 {
   "name": "@sakkke/mc-express",
   "version": "0.2.0",
-  "description": "",
-  "main": "src/index.js",
-  "type": "module",
-  "scripts": {
-    "dev": "bun run --hot ./src/server.js",
-    "test": "exit 0"
-  },
+  "author": "sakkke <w32w64@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sakkke/mc-express.git"
   },
-  "author": "sakkke <w32w64@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sakkke/mc-express/issues"
-  },
-  "homepage": "https://github.com/sakkke/mc-express#readme",
+  "main": "src/index.js",
   "dependencies": {
     "hono": "^4.1.1",
     "oauth2-discord-proxy": "^0.3.0"
   },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
-  }
+  "bugs": {
+    "url": "https://github.com/sakkke/mc-express/issues"
+  },
+  "description": "",
+  "homepage": "https://github.com/sakkke/mc-express#readme",
+  "license": "MIT",
+  "scripts": {
+    "dev": "bun run --hot ./src/server.js",
+    "test": "exit 0"
+  },
+  "type": "module"
 }
