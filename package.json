@@ -14,7 +14,7 @@
   "bugs": {
     "url": "https://github.com/sakkke/mc-express/issues"
   },
-  "description": "",
+  "description": "A proxy service that maps /maps and /Backups under Discord authentication",
   "homepage": "https://github.com/sakkke/mc-express#readme",
   "license": "MIT",
   "scripts": {
