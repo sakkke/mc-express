@@ -1,5 +1,7 @@
 # mc-express
 
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/sakkke/mc-express/bun.yml)
+
 ## Description
 
 `mc-express` is a proxy service that maps /maps and /Backups under Discord authentication.
