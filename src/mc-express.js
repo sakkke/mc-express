@@ -29,13 +29,13 @@ function createServer(config) {
 
   app.get('/', c => c.redirect('/maps/'))
 
-  app.get('/Backups/*', async c => {
-    // .replace(/^\/Backups\//, '')
+  app.get('/backups/*', async c => {
+    // .replace(/^\/backups\//, '')
     const path = c.req.path
       .slice(9)
 
     if (path.length === 0) {
-      const files = await readdir('../Backups', {
+      const files = await readdir('../backups', {
         withFileTypes: true,
       })
       return c.html(html`
@@ -50,7 +50,7 @@ function createServer(config) {
       `)
     }
 
-    const data = await readFile(`../Backups/${path}`)
+    const data = await readFile(`../backups/${path}`)
     return c.body(data, 200, { 'Content-Type': 'application/zip' })
   })
 
